@@ -43,11 +43,23 @@ export function FoodItemsContextProvider({children}) {
         }
     }
 
+    const removeItemFromCart = (chosenItem) => {
+        const cartItem = cartItems.find(cartItem => cartItem.id === chosenItem.id);
+        if (cartItem) {
+            cartItem.count--;
+            if (cartItem.count === 0) {
+                setCartItems(cartItems.filter(item => item.id !== chosenItem.id));
+            } else {
+                setCartItems([...cartItems]);
+            }
+        }
+    }
+
     const ocntextValue = {
         foodItems: foodItems,
         cartItems: cartItems,
         addToCart: (id) => {addItemToCart(id)},
-        removeFromCart: () => {},
+        removeFromCart: (id) => {removeItemFromCart(id)},
     }
 
 

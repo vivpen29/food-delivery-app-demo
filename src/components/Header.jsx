@@ -39,7 +39,11 @@ export default function Header() {
             </div>
 
             {<dialog ref={dialogRef} className="modal">
-                <Cart cartStuff={contextVal.cartItems} availableStuff={contextVal.foodItems}></Cart>
+                <Cart
+                    cartStuff={contextVal.cartItems}
+                    availableStuff={contextVal.foodItems}
+                    addCartItem={contextVal.addToCart}
+                    removeCartItem={contextVal.removeFromCart}></Cart>
                 <div className="modal-actions">
                     <button className="text-button" onClick={handleDialogClose}>Close</button>
                     <button className="button">Go to Checkout</button>
