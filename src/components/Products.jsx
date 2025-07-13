@@ -17,7 +17,7 @@ export default function Products() {
         <div id="meals">
             { contextStuff.foodItems.map(item =>
                 (
-                    <div className="meal-item">
+                    <div className="meal-item" key={item.id}>
                         <article>
                             <img src={"http://localhost:3000/" + item.image} alt={item.name}/>
                             <h3>{item.name}</h3>

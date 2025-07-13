@@ -1,5 +1,5 @@
 import appLogo from '../assets/logo.jpg';
-import {useContext, useRef, useState} from "react";
+import {useContext, useRef} from "react";
 import {FoodItemsContext} from "../store/food-items-context.jsx";
 import Cart from "../models/Cart.jsx";
 
@@ -20,12 +20,6 @@ export default function Header() {
        }
     }
 
-    const handleDialogClose = () => {
-        if (dialogRef.current.hasAttribute("open")) {
-            dialogRef.current.close();
-        }
-    }
-
     return (
         <div id="main-header">
             <div id="title">
@@ -43,11 +37,10 @@ export default function Header() {
                     cartStuff={contextVal.cartItems}
                     availableStuff={contextVal.foodItems}
                     addCartItem={contextVal.addToCart}
-                    removeCartItem={contextVal.removeFromCart}></Cart>
-                <div className="modal-actions">
-                    <button className="text-button" onClick={handleDialogClose}>Close</button>
-                    <button className="button">Go to Checkout</button>
-                </div>
+                    removeCartItem={contextVal.removeFromCart}
+                    cartDialog={dialogRef}
+                >
+                </Cart>
             </dialog>}
         </div>
     )
