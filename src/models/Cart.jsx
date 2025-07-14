@@ -54,7 +54,7 @@ export default function Cart({cartStuff, availableStuff, addCartItem, removeCart
                         </div>
                     </ul>)
                 }
-                <p className="cart-total">Total: ${cartTotal}</p>
+                <p className="cart-total">Total: ${cartTotal.toFixed(2)}</p>
             </div>
             <div className="modal-actions">
                 <button className="text-button" onClick={handleDialogClose}>Close</button>

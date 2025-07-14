@@ -29,6 +29,7 @@ async function submitDataToServer(formData, orderItems) {
 
 export default function Checkout({dialogRef, cartTotal, orderItems}) {
 
+    const [dialogVisible, setDialogVisible] = useState(false);
     const finalDialog = useRef(null);
 
     const handleDialogClose = (event) => {
@@ -47,8 +48,9 @@ export default function Checkout({dialogRef, cartTotal, orderItems}) {
         const city = formData.get("city");
 
         if (!fullName || !email || !address || !code || !city) {
+            setDialogVisible(true);
             return {
-                message: "Please fill in all fields",
+                message: "Please fill in all fields"
             };
         }
 
@@ -67,11 +69,14 @@ export default function Checkout({dialogRef, cartTotal, orderItems}) {
                 code: code,
                 city: city
             }, orderItems);
+            setDialogVisible(true);
             return {
                 message: "Order Status: " + responseData.message,
+                // timestamp: Date.now()
             };
         } catch (error) {
             console.log("Error processing order: ", error.message);
+            setDialogVisible(true);
             return {
                 message: "Error processing order..." + error.message,
             };
@@ -82,26 +87,12 @@ export default function Checkout({dialogRef, cartTotal, orderItems}) {
         message: "Processing order..."
     })
 
-    function openFinalDialog() {
-        if (finalDialog.current) {
-            if (!finalDialog.current.hasAttribute("open")) {
-                finalDialog.current.showModal();
-            }
-        }
-    }
-
     function handleFinalDialogClose() {
-        if (finalDialog.current) {
-            finalDialog.current.close();
-        }
-        handleDialogClose();
+        finalDialog.current?.close();
+        setDialogVisible(false); // reset visibility
+        handleDialogClose(new Event("click")); // also close outer dialog if needed
     }
 
-    useEffect(() => {
-        if (state.message !== "Processing order...") {
-            openFinalDialog();
-        }
-    }, [state.message]);
 
     return (
         <>
@@ -139,9 +130,8 @@ export default function Checkout({dialogRef, cartTotal, orderItems}) {
                     </div>
                 </form>
             </div>
-
-            {<dialog ref={finalDialog} className="modal">
-                    <h1 className="center">{state.message}</h1>
+            {dialogVisible && <dialog ref={finalDialog} className="modal" open>
+                <h1 className="center">{state.message}</h1>
                 <div className="modal-actions">
                     <button className="button" onClick={handleFinalDialogClose}>Okay!</button>
                 </div>
