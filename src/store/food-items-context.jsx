@@ -16,7 +16,7 @@ export function FoodItemsContextProvider({children}) {
 
     useEffect(() => {
         async function getItems() {
-            const response = await fetch("http://localhost:3000/meals", {
+            const response = await fetch("https://backend-delivery-app-1nms.onrender.com/meals", {
                 method: "GET",
             });
             if(!response.ok) {

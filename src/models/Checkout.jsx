@@ -16,7 +16,7 @@ async function submitDataToServer(formData, orderItems) {
         }
     }
 
-    const response = await fetch("http://localhost:3000/orders", {
+    const response = await fetch("https://backend-delivery-app-1nms.onrender.com/orders", {
         method: "POST",
         body: JSON.stringify(req),
         headers: {

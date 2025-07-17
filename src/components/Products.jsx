@@ -19,7 +19,7 @@ export default function Products() {
                 (
                     <div className="meal-item" key={item.id}>
                         <article>
-                            <img src={"http://localhost:3000/" + item.image} alt={item.name}/>
+                            <img src={"https://backend-delivery-app-1nms.onrender.com/" + item.image} alt={item.name}/>
                             <h3>{item.name}</h3>
                             <div>
                                 <p className="meal-item-price">${item.price}</p>
