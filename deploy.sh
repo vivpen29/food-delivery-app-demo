@@ -23,6 +23,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<username>/<username>.github.io.git main
 
 # if you are deploying to https://<username>.github.io/<repo>/
-# git push -f git@github.com:vivepen29/food-delivery-app-demo.git main:gh-pages
+# git push -f git@github.com:vivpen29/food-delivery-app-demo.git main:gh-pages
 
 cd -
